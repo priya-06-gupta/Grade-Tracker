@@ -1,0 +1,88 @@
+import java.util.*;
+public class Gradesystem {
+
+
+   public static void calculateAverage(int arr[]) {
+        int sum = 0;
+        for (int score : arr) {
+            sum += score;
+        }
+        int avg = sum / arr.length;
+        System.out.println("\nAverage score of Students: " + avg);
+    }
+
+    public static String getGrades(int score){
+        if(score>=90){
+            return "A";
+        }
+        else if(score>=80){
+            return "B";
+        }
+        else if(score>=70){
+            return "C";
+        }
+        else if(score>=60){
+            return "D";
+        }
+        else if(score>=50){
+            return "E";
+        }
+        else{
+            return "F";
+        }
+    }
+
+
+public static int  highestScore(int score[]){
+    int highest=Integer.MIN_VALUE; //infinity
+    for(int i=0;i<score.length;i++){
+        if(highest<score[i]){
+            highest=score[i];
+        }
+    }       
+    return highest;
+}
+
+public static int  lowestScore(int score[]){
+    int lowest=Integer.MAX_VALUE; //infinity
+    for(int i=0;i<score.length;i++){
+        if(lowest>score[i]){
+            lowest=score[i];
+        }
+    }       
+    return lowest;
+}
+
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter number of students: ");
+        int n=sc.nextInt();
+        sc.nextLine(); 
+
+         String[] names = new String[n];
+        int score[]=new int[n];
+
+        System.out.println("Enter names and scores of " + n + " students:");
+
+        for (int i = 0; i < score.length; i++) {
+            System.out.print("Student " + (i + 1) + " name: ");
+            names[i] = sc.nextLine();
+            System.out.print("Score of " + names[i] + ": ");
+            score[i] = sc.nextInt();
+            sc.nextLine(); // consume newline
+        }
+
+
+        System.out.println("\n--- Student Report ---");
+        for(int i=0;i<score.length;i++){
+            String grade=getGrades(score[i]);
+            System.out.println("Name: " + names[i] + ", score: " + score[i] + ", Grade: " + grade);
+
+        }
+        calculateAverage(score);
+        System.out.println("Highest Score: " + highestScore(score));
+         System.out.println("Lowest Score: " + lowestScore(score));
+        sc.close();
+    }
+}
